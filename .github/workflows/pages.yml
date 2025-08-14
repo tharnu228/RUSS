@@ -25,10 +25,10 @@ jobs:
       - run: npm run build:prod
       # SPA-фолбэк на прямых ссылках (если уже есть 404.html — шаг не помешает)
       - run: |
-          if [ -f dist/index.html ]; then cp dist/index.html dist/404.html; fi
+          if [ -f build/index.html ]; then cp build/index.html build/404.html; fi
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist        # <-- если у тебя папка build, поменяй на build
+          path: build        # <-- если у тебя папка build, поменяй на build
   deploy:
     needs: build
     runs-on: ubuntu-latest
