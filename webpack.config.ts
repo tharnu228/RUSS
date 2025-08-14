@@ -20,7 +20,7 @@ export default (env: BuildEnv) => {
     paths,
     isDev,
     port: PORT,
-    publicURL: 'auto',
+    publicURL: 'RUSS',
   });
 
   return config;
