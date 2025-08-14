@@ -1,0 +1,30 @@
+@use '@/app/styles/ScssVars' as *;
+
+.TrainerHearts {
+  display: inline-flex;
+  gap: 6px;
+  /* можно переопределить размер через var(--heart-size) из родителя */
+  --heart-size: 18px;
+}
+
+.TrainerHearts__heart {
+  width: 33px;
+  height: 33px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heartImg {
+  width: 33px;
+  height: 33px;
+  object-fit: contain;
+  image-rendering: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* при желании можешь добавить эффекты для заполненных */
+.TrainerHearts__heart__filled .heartImg {
+  /* например, небольшая тень или отсутствие фильтра */
+}
