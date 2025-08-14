@@ -8,18 +8,18 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script>
-      const timeout = setTimeout(() => {
-        const is_dev = JSON.parse(document.body.getAttribute('data-isdev'));
-        const publicUrl = JSON.parse(document.body.getAttribute('data-publicUrl'));
+      window.addEventListener('DOMContentLoaded', () => {
+        const ds = document.body.dataset;                 // { isdev: 'false', publicurl: 'RUSS' }
+        const isDev = (ds.isdev || '').toLowerCase() === 'true';
+        const publicUrl = (ds.publicurl || '').replace(/^\/+|\/+$/g, '');
 
-        const faviconPath = is_dev ? '/favicon.ico' : `/${publicUrl}/favicon.ico`;
+        const base = isDev || !publicUrl ? '' : `/${publicUrl}`;
         const linkElement = document.createElement('link');
         linkElement.rel = 'icon';
         linkElement.type = 'image/x-icon';
-        linkElement.href = faviconPath;
+        linkElement.href = `${base}/favicon.ico`;
         document.head.appendChild(linkElement);
-        clearTimeout(timeout);
-      }, 1000);
+      });
     </script>
     <title>Сунцов Никита, русский язык</title>
   </head>
