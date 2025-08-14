@@ -10,6 +10,19 @@ import { BrowserRouter } from 'react-router-dom';
 
 const container = document.getElementById('root');
 
+const getBasename = () => {
+  if (__IS_DEV__) return '/';
+
+  // 1) из атрибута в index.html
+  const ds = document.body?.dataset || {};
+  const fromDataset = (ds.publicurl || '').trim(); // <body data-publicurl="RUSS">
+  if (fromDataset) return `/${fromDataset}`;
+
+  // 2) запасной вариант — первый сегмент пути (GitHub Pages: /<repo>/...)
+  const firstSeg = window.location.pathname.split('/').filter(Boolean)[0] || '';
+  return firstSeg ? `/${firstSeg}` : '/';
+};
+
 if (!container) {
   throw new Error(
     'Контейнер root не найден. НЕ удалось вмонтировать реакт приложение',
@@ -19,7 +32,7 @@ if (!container) {
 const root = createRoot(container);
 
 root.render(
-  <BrowserRouter basename={__IS_DEV__ ? '/' : `/${process.env.PUBLIC_URL}`}>
+  <BrowserRouter basename={getBasename()}>
     <Provider store={store}>
       <ErrorBoundary fallback={<ErrorComponent />}>
         <App />

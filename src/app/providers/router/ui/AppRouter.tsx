@@ -8,14 +8,7 @@ import { useFetchDictantsRoutes } from '../lib/hooks/useFetchDictantsRoutes';
 import { useFetchPartsOfSpeachRoutes } from '../lib/hooks/useFetchPartsOfSpeachRoutes';
 
 export const AppRouter: React.FC = memo(() => {
-  // Добавление data-атрибута в body в зависимости от режима сборки
-  useEffect(() => {
-    document.body.setAttribute('data-isDev', JSON.stringify(__IS_DEV__));
-    document.body.setAttribute(
-      'data-publicUrl',
-      JSON.stringify(process.env.PUBLIC_URL),
-    );
-  }, []);
+  // Добавление data-атрибута в body в зависимости от режима сборк
 
   // Делаем конфиг с роутами стейтом
   const [routes, setRoutes] =
