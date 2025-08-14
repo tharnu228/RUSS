@@ -22,7 +22,7 @@ jobs:
           node-version: 20
           cache: 'npm'
       - run: npm ci
-      - run: npm run deploy
+      - run: npm run build:prod
       # SPA-фолбэк на прямых ссылках (если уже есть 404.html — шаг не помешает)
       - run: |
           if [ -f dist/index.html ]; then cp dist/index.html dist/404.html; fi
